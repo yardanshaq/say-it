@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Say It - Illenium Remix</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Helvetica, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    #lyric {
+      font-size: 28px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    audio {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎶 Say It - Illenium Remix 🎶</h2>
+  <div id="lyric">[ menunggu lagu dimulai... ]</div>
+  <audio id="player" controls>
+    <source src="say_it.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const lyrics = [
+      ["mmm...", 0.3, "magenta"],
+      ["when u say like that oh, oh, oh, oh", 2.8, "cyan"],
+      ["when u say it, say it", 7.4, "red"],
+      ["got me falling right back oh, oh, oh, oh", 9.0, "yellow"],
+      ["let me fuck u right back", 14.0, "orange"],
+      ["when u say like that oh, oh, oh, oh", 15.5, "cyan"],
+      ["when u say it, say it", 20.2, "red"],
+      ["let me fuck you right back oh, oh, oh, oh", 22.0, "orange"],
+      ["mmm...", 26.5, "magenta"],
+    ];
+
+    const lyricDiv = document.getElementById("lyric");
+    const audio = document.getElementById("player");
+
+    audio.addEventListener("play", () => {
+      const startTime = audio.currentTime;
+      lyrics.forEach(([text, time, color]) => {
+        setTimeout(() => {
+          lyricDiv.textContent = text;
+          lyricDiv.style.color = color;
+        }, (time - startTime) * 1000);
+      });
+    });
+  </script>
+</body>
+</html>
